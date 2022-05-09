@@ -1,17 +1,16 @@
 ﻿namespace Coterie.Services.Validators.Shared
 {
+    using Data;
+    using Microsoft.EntityFrameworkCore;
     using System;
     using System.Linq.Expressions;
     using System.Threading.Tasks;
-    using Data.Model;
-    using Microsoft.EntityFrameworkCore;
-using Coterie.Services.Validators.Shared;
 
     public class CommonValidators : ICommonValidators
     {
-        private readonly ICommissionsContext _context;
+        private readonly ICoterieContext _context;
 
-        public CommonValidators(ICommissionsContext context)
+        public CommonValidators(ICoterieContext context)
         {
             _context = context;
         }

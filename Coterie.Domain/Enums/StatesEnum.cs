@@ -1,7 +1,7 @@
-﻿using System.ComponentModel;
-
-namespace Coterie.Domain.Enums
+﻿namespace Coterie.Domain.Enums
 {
+    using System.ComponentModel;
+
     public enum StatesEnum
     {
         [Description("OHIO")]

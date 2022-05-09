@@ -1,17 +1,18 @@
-using Coterie.Api.DependencyResolution;
-using Coterie.Services.Validators.ValidationBehaviour;
-using FluentValidation;
-
 namespace Coterie.Api
 {
+    using Data;
+    using DependencyResolution;
     using ExceptionHelpers;
+    using FluentValidation;
     using Mediator;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
+    using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
     using Microsoft.OpenApi.Models;
+    using Services.Validators.ValidationBehaviour;
 
     public class Startup
     {
@@ -26,6 +27,8 @@ namespace Coterie.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+
+            services.AddDbContext<CoterieContext>(options => options.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
 
             //Log.Information("Adding validators");
             services.AddValidatorsFromAssembly(typeof(ValidationBehaviour<,>).Assembly);

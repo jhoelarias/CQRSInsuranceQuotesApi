@@ -1,7 +1,7 @@
-using System;
-
 namespace Coterie.Domain.Responses
 {
+    using System;
+
     public class ApiResponse<TResult>
     {
         public ApiResponse()

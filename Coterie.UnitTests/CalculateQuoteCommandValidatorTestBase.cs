@@ -1,7 +1,10 @@
-﻿using Coterie.Domain.Commands.QuoteCommands;
-using Coterie.Services.Validators.CommandValidators.CommissionPlanValidators;
+﻿using System;
+using Coterie.Domain.Commands.QuoteCommands;
 using NUnit.Framework;
 using System.Collections.Generic;
+using Coterie.Data;
+using Coterie.Services.Validators.Shared;
+using Coterie.Services.Validators.CommandValidators.QuoteValidators;
 
 namespace Coterie.UnitTests
 {
@@ -12,7 +15,10 @@ namespace Coterie.UnitTests
         [OneTimeSetUp]
         public void BaseOneTimeSetup()
         {
-            _calculateQuoteCommandValidator = new CalculateQuoteCommandValidator();
+            CoterieContextFactory contextFactory = new();
+            ICoterieContext context = contextFactory.CreateDbContext(new[] { "DataSource=..\\..\\..\\..\\Coterie.Data\\DataBaseMigrations\\coterie.db" });
+            ICommonValidators commonValidators = new CommonValidators(context);
+            _calculateQuoteCommandValidator = new CalculateQuoteCommandValidator(commonValidators);
         }
 
         [TearDown]

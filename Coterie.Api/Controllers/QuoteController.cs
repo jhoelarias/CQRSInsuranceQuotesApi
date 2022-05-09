@@ -1,7 +1,6 @@
-﻿using Coterie.Domain.Responses;
-
-namespace Coterie.Api.Controllers
+﻿namespace Coterie.Api.Controllers
 {
+    using Domain.Responses;
     using Domain.Commands.QuoteCommands;
     using Domain.Responses.Quote;
     using MediatR;

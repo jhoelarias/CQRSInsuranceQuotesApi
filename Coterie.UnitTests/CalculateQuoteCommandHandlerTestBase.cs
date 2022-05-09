@@ -1,7 +1,9 @@
-﻿using Coterie.Domain.Commands.QuoteCommands;
+﻿using System;
+using Coterie.Domain.Commands.QuoteCommands;
 using Coterie.Services.CommandHandlers.QuoteCommandHandlers;
 using NUnit.Framework;
 using System.Collections.Generic;
+using Coterie.Data;
 
 namespace Coterie.UnitTests
 {
@@ -12,7 +14,9 @@ namespace Coterie.UnitTests
         [OneTimeSetUp]
         public void BaseOneTimeSetup()
         {
-            _calculateQuoteCommandHandler = new QuoteCommandHandlers.CalculateQuoteCommandHandler();
+            CoterieContextFactory contextFactory = new();
+            ICoterieContext context = contextFactory.CreateDbContext(new[] { "DataSource=..\\..\\..\\..\\Coterie.Data\\DataBaseMigrations\\coterie.db" });
+            _calculateQuoteCommandHandler = new QuoteCommandHandlers.CalculateQuoteCommandHandler(context);
         }
 
         [TearDown]

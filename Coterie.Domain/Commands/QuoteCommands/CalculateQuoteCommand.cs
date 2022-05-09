@@ -1,7 +1,6 @@
-﻿using Coterie.Domain.Responses;
-
-namespace Coterie.Domain.Commands.QuoteCommands
+﻿namespace Coterie.Domain.Commands.QuoteCommands
 {
+    using Responses;
     using Responses.Quote;
     using System.Collections.Generic;
 

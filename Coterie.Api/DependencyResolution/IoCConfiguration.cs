@@ -1,5 +1,7 @@
 ﻿namespace Coterie.Api.DependencyResolution
 {
+    using Data;
+    using Services.Validators.Shared;
     using MediatR;
     using Microsoft.Extensions.DependencyInjection;
     using Services.Validators.ValidationBehaviour;
@@ -14,6 +16,8 @@
         {
             //Register the services
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehaviour<,>));
+            services.AddScoped<ICoterieContext, CoterieContext>();
+            services.AddScoped<ICommonValidators, CommonValidators>();
         }
     }
 }
