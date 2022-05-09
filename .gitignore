@@ -66,3 +66,5 @@ Desktop.ini
 .DS_Store
 /Coterie.Api/~$Mini_Rater.xlsx
 /Coterie.UnitTests/TestResults/f9987931-af39-42ba-a2e1-61e5fdac2f64/coverage.cobertura.xml
+/coverage.json
+/Coterie.UnitTests/coverage.json
