@@ -20,3 +20,14 @@
     ```
   6. Click on execute. 
   7. Scroll down and you will see the response Body with the results
+
+  ## Note
+  In case you want to remove the database and regenerate it, please follow these steps:
+
+1. Remove the folder DatabaseMigrations from the Coterie.Data project
+2. Open the nuget package console in visual studio and run the following commands:
+3. cd .\Coterie.Data
+4. dotnet ef migrations add Initial -o DatabaseMigrations
+5. dotnet ef database update
+
+A new database should be generated. 

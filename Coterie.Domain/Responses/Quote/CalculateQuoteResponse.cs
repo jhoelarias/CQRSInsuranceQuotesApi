@@ -4,8 +4,8 @@
 
     public class CalculateQuoteResponse
     {
-        public string Business { get; set; }
-        public int Revenue { get; set; }
-        public IReadOnlyCollection<PremiumValues> Premiums { get; set; }
+        public string Business { get; init; }
+        public int Revenue { get; init; }
+        public IReadOnlyCollection<PremiumValues> Premiums { get; set; } = new List<PremiumValues>();
     }
 }

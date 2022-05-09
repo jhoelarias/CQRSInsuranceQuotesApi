@@ -25,7 +25,7 @@ namespace Coterie.Api.ExceptionHelpers
             var appContext = context.Features.Get<IExceptionHandlerPathFeature>();
             var exception = context.Features.Get<IExceptionHandlerPathFeature>().Error;
 
-            ApiResponse<string> actionResponse = new()
+            GenericResponse<string> actionResponse = new()
             {
                 Message = "An error has occurred",
                 Error = $"{appContext.Error.Message} {appContext.Error.InnerException} {appContext.Error.StackTrace}"
@@ -42,8 +42,14 @@ namespace Coterie.Api.ExceptionHelpers
 
                 case ValidationException validationException:
                     context.Response.StatusCode = (int)HttpStatusCode.BadRequest;
-                    actionResponse.Error = validationException.Errors.Select(e => new { e.PropertyName, e.ErrorMessage });
-                    actionResponse.Message = "One or more validation errors occurred."; break;
+
+                    actionResponse = new GenericResponse<string>
+                    {
+                        Message = "One or more validation errors occurred.",
+                        Error = validationException.Errors.Select(e => new { e.PropertyName, e.ErrorMessage })
+                    };
+
+                    break;
 
                 default:
                     // unhandled error

@@ -13,25 +13,26 @@
 
     public class QuoteCommandHandlers
     {
-        public class CalculateQuoteCommandHandler : IRequestHandler<CalculateQuoteCommand, ApiResponse<CalculateQuoteResponse>>
+        public class CalculateQuoteCommandHandler : IRequestHandler<CalculateQuoteCommand, GenericResponse<CalculateQuoteResponse>>
         {
             private readonly ICoterieContext _context;
 
             private const int HazardFactor = 4;
-            private const int _premiumBaseDiv = 1000;
+            private const int PremiumBaseDiv = 1000;
 
             public CalculateQuoteCommandHandler(ICoterieContext context)
             {
-                _context = context;
+                _context = context ?? throw new ArgumentNullException(nameof(context));
+                ;
             }
 
-            public async Task<ApiResponse<CalculateQuoteResponse>> Handle(CalculateQuoteCommand request, CancellationToken cancellationToken)
+            public async Task<GenericResponse<CalculateQuoteResponse>> Handle(CalculateQuoteCommand request, CancellationToken cancellationToken)
             {
                 var business = await _context.Businesses.FirstOrDefaultAsync(b => b.Name == request.Business, cancellationToken);
 
-                var basePremium = Math.Ceiling(Convert.ToDouble(request.Revenue / _premiumBaseDiv));
+                var basePremium = Math.Ceiling(Convert.ToDouble(request.Revenue / PremiumBaseDiv));
 
-                return new ApiResponse<CalculateQuoteResponse>
+                return new GenericResponse<CalculateQuoteResponse>
                 {
                     Result = new CalculateQuoteResponse
                     {

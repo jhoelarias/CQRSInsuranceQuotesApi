@@ -4,7 +4,7 @@
     using Responses.Quote;
     using System.Collections.Generic;
 
-    public class CalculateQuoteCommand : BaseCommand<ApiResponse<CalculateQuoteResponse>>
+    public class CalculateQuoteCommand : BaseCommand<GenericResponse<CalculateQuoteResponse>>
     {
         public string Business { get; set; }
         public int Revenue { get; set; }
