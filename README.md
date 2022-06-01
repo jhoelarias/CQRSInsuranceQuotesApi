@@ -1,4 +1,4 @@
-# CoterieApi
+# CQRSInsuranceQuoteApi
 
 ## Application execution and testing steps
  
